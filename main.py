@@ -5,17 +5,25 @@ you have to Capitalize first letter of all files present in the given path excep
 and files names given in .txt file and rename all jpg files like in series from 1 to x
 numbers of file present in the given path.
 """
+# Please enter ignored file name in list.txt in one line seperating each other by comma "," For example:- anant.txt,python.py,nacho.py
+
 import os
 import time
+from typing import Mapping
 def soldier(path, txtfile, extension):
     a = os.path.exists(path)
     if a == True:
         print("Please wait.. Soldier has been sent to prettify your folder..")
-        time.sleep(.5)
-        with open(txtfile, "r") as f:
-            ignore = f.readline() # For collecting ignore file name from file.
-        ig = ignore.split("\n") # For splitting that ignore string from \n
-        ignore1 = ig[0].split(",") # For splitting all file names by , and putting them in a list.
+        try:
+            time.sleep(.5)
+            with open(txtfile, "r") as f:
+                ignore = f.readline() # For collecting ignore file name from file.
+            ig = ignore.split("\n") # For splitting that ignore string from \n
+            ignore1 = ig[0].split(",") # For splitting all file names by , and putting them in a list.
+        except Exception as e:
+            return "You might not have put ignore file names in correct way..\n Please enter ignored file name in list.txt \
+                in one line seperating each other by comma "," For example:- anant.txt,python.py,nacho.py"
+
         file1 = os.listdir(path)
         for i in file1: # For removing folders from our list1
             if os.path.isdir(f"D:\Target folder\{i}") is True:
@@ -49,4 +57,7 @@ def soldier(path, txtfile, extension):
     else:
         print("Your given path is invalid!! please enter a valid path..")
 
-soldier("D:\Target folder", "list.txt", "jpg")
+
+path = input("Enter path of target folder with you want to prettify: ")
+extension = input("Enter the extension: ")
+soldier(path, "list.txt", extension)
