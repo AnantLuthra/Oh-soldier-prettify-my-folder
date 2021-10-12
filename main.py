@@ -8,7 +8,6 @@ numbers of file present in the given path.
 # Please enter ignored file name in list.txt in one line seperating each other by comma "," For example:- anant.txt,python.py,nacho.py
 
 import os
-import time
 from typing import Mapping
 def soldier(path, txtfile, extension):
     a = os.path.exists(path)
